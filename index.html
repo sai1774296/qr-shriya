@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Shriya Ayuthu — Medical Researcher</title>
 <style>
-  :root{
-    --ink:#0f2a3a;--teal:#0e7c86;--teal-deep:#0b5c64;--mist:#eef5f6;
-    --line:#e2ecee;--muted:#5c7480;--white:#ffffff;
-  }
+  :root{--ink:#0f2a3a;--teal:#0e7c86;--teal-deep:#0b5c64;--mist:#eef5f6;
+    --line:#e2ecee;--muted:#5c7480;--white:#ffffff;}
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{height:100%;}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  html{height:auto;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     background:radial-gradient(1200px 600px at 50% -10%, #17909c 0%, rgba(23,144,156,0) 60%),
       linear-gradient(160deg,#0b5c64 0%,#0f2a3a 100%);
-    min-height:100%;display:flex;align-items:center;justify-content:center;
-    padding:28px 16px;color:var(--ink);
-  }
-  .card{width:100%;max-width:430px;background:var(--white);border-radius:24px;
+    background-attachment:fixed;
+    min-height:100vh;min-height:100dvh;
+    display:flex;
+    padding:28px 16px calc(28px + env(safe-area-inset-bottom));
+    color:var(--ink);-webkit-text-size-adjust:100%;}
+  .card{width:100%;max-width:430px;margin:auto;background:var(--white);border-radius:24px;
     box-shadow:0 24px 60px rgba(4,30,38,.35);overflow:hidden;
     animation:rise .6s cubic-bezier(.2,.7,.2,1) both;}
   @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
@@ -40,16 +39,36 @@
   .about strong{color:var(--teal-deep);}
   .divider{height:1px;background:var(--line);margin:20px 0 4px;}
   .btns{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+  .row{display:flex;align-items:stretch;gap:8px;}
+  .row .tap{flex:1 1 auto;display:flex;align-items:center;gap:12px;padding:14px 16px;
+    border-radius:14px;text-decoration:none;border:1px solid var(--line);
+    color:var(--ink);background:var(--white);transition:transform .12s ease;min-width:0;}
+  .row .tap:active{transform:scale(.98);}
+  .ic{width:34px;height:34px;flex:0 0 34px;border-radius:10px;display:flex;
+    align-items:center;justify-content:center;background:var(--mist);}
+  .ic svg{width:18px;height:18px;fill:var(--teal-deep);}
+  .lbl{display:flex;flex-direction:column;text-align:left;line-height:1.25;min-width:0;}
+  .lbl small{font-size:12.5px;color:var(--muted);font-weight:600;overflow:hidden;text-overflow:ellipsis;}
+  .copy{flex:0 0 52px;border:1px solid var(--line);background:var(--white);border-radius:14px;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    color:var(--teal-deep);transition:transform .12s ease, background .12s ease;position:relative;}
+  .copy:active{transform:scale(.96);}
+  .copy svg{width:19px;height:19px;fill:var(--teal-deep);}
+  .copy.copied{background:var(--teal);border-color:var(--teal);}
+  .copy.copied svg{fill:#fff;}
+  .copy .tip{position:absolute;top:-30px;right:0;background:var(--ink);color:#fff;
+    font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;opacity:0;
+    transform:translateY(4px);transition:.15s;pointer-events:none;white-space:nowrap;}
+  .copy.copied .tip{opacity:1;transform:translateY(0);}
   .btn{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;
     font-size:15px;font-weight:600;text-decoration:none;border:1px solid var(--line);
-    color:var(--ink);background:var(--white);
-    transition:transform .12s ease, box-shadow .12s ease, background .12s ease;}
+    color:var(--ink);background:var(--white);transition:transform .12s ease;}
   .btn:active{transform:scale(.98);}
-  .btn .ic{width:34px;height:34px;flex:0 0 34px;border-radius:10px;display:flex;
-    align-items:center;justify-content:center;background:var(--mist);}
-  .btn .ic svg{width:18px;height:18px;fill:var(--teal-deep);}
-  .btn .lbl{display:flex;flex-direction:column;text-align:left;line-height:1.25;}
-  .btn .lbl small{font-size:12.5px;color:var(--muted);font-weight:600;}
+  .btn .ic svg{fill:var(--teal-deep);}
+  .btn .lbl small{color:var(--muted);}
+  .link-arrow{margin-left:auto;color:var(--teal-deep);font-size:13px;font-weight:700;
+    display:flex;align-items:center;gap:4px;flex:0 0 auto;}
+  .link-arrow svg{width:15px;height:15px;fill:var(--teal-deep);}
   .btn.primary{background:linear-gradient(120deg,var(--teal) 0%,var(--teal-deep) 100%);
     color:#fff;border:none;box-shadow:0 8px 20px rgba(14,124,134,.35);justify-content:center;}
   .btn.primary .ic{background:rgba(255,255,255,.18);}
@@ -70,9 +89,7 @@
       <div class="title">Medical Researcher</div>
       <div class="subtitle">Aspiring Resident Physician</div>
       <div class="tags">
-        <span class="tag">Research</span>
-        <span class="tag">Publications</span>
-        <span class="tag">Residency-bound</span>
+        <span class="tag">Research</span><span class="tag">Publications</span><span class="tag">Residency-bound</span>
       </div>
       <p class="about">
         Passionate <strong>medical researcher</strong> with <strong>26 research works, including
@@ -83,17 +100,30 @@
       </p>
       <div class="divider"></div>
       <div class="btns">
-        <a class="btn" href="tel:+19432679036">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.1 2.2z"/></svg></span>
-          <span class="lbl">Call<small>+1 (943) 267-9036</small></span>
-        </a>
-        <a class="btn" href="mailto:ayuthushriya@gmail.com">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 7L4 6.5V6l8 4.5L20 6v.5L12 11z"/></svg></span>
-          <span class="lbl">Email<small>ayuthushriya@gmail.com</small></span>
-        </a>
+        <div class="row">
+          <a class="tap" href="tel:+19432679036">
+            <span class="ic"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.1 2.2z"/></svg></span>
+            <span class="lbl">Call<small>+1 (943) 267-9036</small></span>
+          </a>
+          <button class="copy" data-copy="+19432679036" aria-label="Copy phone number">
+            <span class="tip">Copied!</span>
+            <svg viewBox="0 0 24 24"><path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </button>
+        </div>
+        <div class="row">
+          <a class="tap" href="mailto:ayuthushriya@gmail.com">
+            <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 7L4 6.5V6l8 4.5L20 6v.5L12 11z"/></svg></span>
+            <span class="lbl">Email<small>ayuthushriya@gmail.com</small></span>
+          </a>
+          <button class="copy" data-copy="ayuthushriya@gmail.com" aria-label="Copy email">
+            <span class="tip">Copied!</span>
+            <svg viewBox="0 0 24 24"><path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </button>
+        </div>
         <a class="btn" href="https://www.linkedin.com/in/shriya-ayuthu-5713562b0/" target="_blank" rel="noopener">
           <span class="ic"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0h4.78v2.19h.07c.67-1.2 2.3-2.46 4.73-2.46C22.4 7.73 24 10.1 24 14.3V24h-5v-8.6c0-2.05-.74-3.45-2.58-3.45-1.4 0-2.24.94-2.6 1.85-.14.33-.17.79-.17 1.25V24h-5s.07-14.5 0-16z"/></svg></span>
-          <span class="lbl">LinkedIn<small>View profile &amp; connect</small></span>
+          <span class="lbl">LinkedIn<small>linkedin.com/in/shriya-ayuthu</small></span>
+          <span class="link-arrow">Open <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.3 9.29 1.42 1.42L19 6.41V10h2V3h-7zM5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg></span>
         </a>
         <a class="btn primary" id="saveBtn" href="#">
           <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.31 0-8 1.67-8 5v1h12v-2h2v-2h2v-2h-2v-2h-2v2c-1.2-.6-2.7-1-4-1z"/></svg></span>
@@ -101,28 +131,38 @@
         </a>
       </div>
       <div class="foot">
-        Eager to connect at the conference &#129309;
-        <br />
+        Eager to connect at the conference &#129309;<br />
         <span class="aamc">AAMC ID: 16155584</span>
       </div>
     </div>
   </main>
 <script>
-  const vcard = [
-    "BEGIN:VCARD","VERSION:3.0","N:Ayuthu;Shriya;;;","FN:Shriya Ayuthu",
+  document.querySelectorAll(".copy").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var text = btn.getAttribute("data-copy");
+      var done = function(){ btn.classList.add("copied");
+        setTimeout(function(){ btn.classList.remove("copied"); }, 1400); };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
+      } else { fallback(text, done); }
+    });
+  });
+  function fallback(text, done){
+    var t=document.createElement("textarea");t.value=text;t.style.position="fixed";
+    t.style.opacity="0";document.body.appendChild(t);t.focus();t.select();
+    try{document.execCommand("copy");}catch(e){}
+    document.body.removeChild(t);done();
+  }
+  var vcard=["BEGIN:VCARD","VERSION:3.0","N:Ayuthu;Shriya;;;","FN:Shriya Ayuthu",
     "TITLE:Medical Researcher","TEL;TYPE=CELL:+19432679036","EMAIL:ayuthushriya@gmail.com",
     "URL:https://www.linkedin.com/in/shriya-ayuthu-5713562b0/",
     "NOTE:Medical researcher seeking residency opportunities. AAMC ID 16155584.",
-    "END:VCARD"
-  ].join("\n");
-  document.getElementById("saveBtn").addEventListener("click", function(e){
+    "END:VCARD"].join("\n");
+  document.getElementById("saveBtn").addEventListener("click",function(e){
     e.preventDefault();
-    const blob = new Blob([vcard], {type:"text/vcard"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url; a.download = "Shriya_Ayuthu.vcf";
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    var blob=new Blob([vcard],{type:"text/vcard"});var url=URL.createObjectURL(blob);
+    var a=document.createElement("a");a.href=url;a.download="Shriya_Ayuthu.vcf";
+    document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
   });
 </script>
 </body>
